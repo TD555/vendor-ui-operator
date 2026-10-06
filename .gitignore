@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+# Run outputs are ignored by default; commit the demonstration runs explicitly:
+#   git add -f runs/<live-run-id> runs/<replay-run-id>
+runs/*
+!runs/README.md

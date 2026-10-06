@@ -1,0 +1,5 @@
+# Versions used to build and test this submission (Python 3.13.16).
+playwright==1.56.0
+anthropic==1.11.0
+openai==3.24.0      # only needed with --provider openai
+pytest==9.1.1

@@ -1,0 +1,110 @@
+{
+  "template": false,
+  "exercise": "Junior AI Engineer take-home, alternative G (Business UI operator), starter pack 2026-10-02",
+  "categories": {
+    "development_tools_and_models": {
+      "status": "used",
+      "files": [],
+      "notes": "Claude app agentic session (cloud workspace with shell and file tools), configured model claude-opus-5-5. Default settings; no custom configuration files were created for it. Hosted session settings are not exportable."
+    },
+    "plugins_and_extensions": {
+      "status": "not-used",
+      "files": [],
+      "notes": "No editor plugins or extensions were used for this exercise."
+    },
+    "application_models_and_parameters": {
+      "status": "used",
+      "files": ["ui_operator/config.py", "ui_operator/model.py"],
+      "notes": "Anthropic claude-haiku-4-5-20251001 by default; max_tokens 1024; forced single tool call per turn; 60 s timeout; 2 SDK retries. Temperature is the provider default because anthropic SDK 1.11 exposes no sampling parameters. OpenAI adapter (gpt-4.1-mini default, temperature 0) exists but was not exercised."
+    },
+    "skills": {
+      "status": "not-used",
+      "files": [],
+      "notes": "starter-pack skill generate-assignment-data was read for its guidance but not installed or run; the added fixtures R6-R9 were handwritten (method recorded in data/extra-requests.json)."
+    },
+    "agent_instructions_and_subagents": {
+      "status": "not-used",
+      "files": [],
+      "notes": "No CLAUDE.md/AGENTS.md or subagent definitions. The application's own agent instructions are the system prompt listed under prompts_and_rules."
+    },
+    "hooks_and_scripts": {
+      "status": "not-used",
+      "files": [],
+      "notes": "No hooks."
+    },
+    "prompts_and_rules": {
+      "status": "used",
+      "files": ["prompts/operator-system.md", "ui_operator/actions.py"],
+      "notes": "System prompt loaded at runtime; its sha256 is stored in every run.json. Tool definitions (select_option, fill_field, click_button, finish) are in actions.py TOOLS."
+    },
+    "tool_and_mcp_settings": {
+      "status": "used",
+      "files": ["ui_operator/actions.py", "ui_operator/browser.py", "ui_operator/config.py"],
+      "notes": "The application's tool surface: four tools, a guard that validates every action, an off-portal network block, a 12-step limit and a 2-save limit. No MCP servers."
+    },
+    "permissions_and_environment_names": {
+      "status": "used",
+      "files": [".env.example", "ai-workflow/.env.example"],
+      "notes": "Environment variable names only. API keys are read from the environment and never written to run records. The development session's permission settings are hosted and not-exportable."
+    }
+  },
+  "configuration_records": [
+    {
+      "name": "Development assistant",
+      "category": "development_tools_and_models",
+      "purpose": "Generate and check application code, tests, fixtures and docs",
+      "original_path_or_scope": "Claude app session (hosted)",
+      "saved_path": "docs/llm-usage.md",
+      "version_or_commit": "claude-opus-5-5 (configured); session date 2026-10-06",
+      "used_during": "whole exercise",
+      "status": "default",
+      "redactions": []
+    },
+    {
+      "name": "Operator system prompt",
+      "category": "prompts_and_rules",
+      "purpose": "Domain rules, procedure and safety instructions for the runtime model",
+      "original_path_or_scope": "repository",
+      "saved_path": "prompts/operator-system.md",
+      "version_or_commit": "see git log -- prompts/operator-system.md; sha256 recorded per run",
+      "used_during": "every live run and replay",
+      "status": "used",
+      "redactions": []
+    },
+    {
+      "name": "Model adapter and parameters",
+      "category": "application_models_and_parameters",
+      "purpose": "Call the model with tools, record real responses, replay without a key",
+      "original_path_or_scope": "repository",
+      "saved_path": "ui_operator/model.py, ui_operator/config.py",
+      "version_or_commit": "git history",
+      "used_during": "live runs and replays",
+      "status": "used",
+      "redactions": []
+    },
+    {
+      "name": "Tool definitions and action guard",
+      "category": "tool_and_mcp_settings",
+      "purpose": "Bound what the model can do in the browser and enforce the domain rules before execution",
+      "original_path_or_scope": "repository",
+      "saved_path": "ui_operator/actions.py",
+      "version_or_commit": "git history",
+      "used_during": "live runs, replays and tests",
+      "status": "used",
+      "redactions": []
+    },
+    {
+      "name": "API credentials",
+      "category": "permissions_and_environment_names",
+      "purpose": "Authenticate model calls",
+      "original_path_or_scope": "shell environment",
+      "saved_path": ".env.example",
+      "version_or_commit": "n/a",
+      "used_during": "live runs only",
+      "status": "redacted",
+      "redactions": ["ANTHROPIC_API_KEY / MODEL_API_KEY value: credential, never committed"]
+    }
+  ],
+  "replay_command": "python3 -m ui_operator replay runs/<live-run-id>",
+  "workflow_example_path": "docs/llm-usage.md"
+}
