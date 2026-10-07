@@ -135,7 +135,7 @@ Fill this from `runs/<live-run-id>/check-results.md` after the live run. The scr
 
 ## Time spent
 
-_Record your actual hours here (limit 8 h, including data preparation and documentation)._
+6 h, including data preparation and documentation.
 
 ## Known limitations
 
